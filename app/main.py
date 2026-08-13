@@ -2,15 +2,17 @@ from fastapi import FastAPI
 
 from app.core.config import settings
 from app.api.v1 import api as api_v1_router
+from app.db.session import create_db_and_tables
 from contextlib import asynccontextmanager
 
 
-@asynccontextmanager
 async def lifespan(app: FastAPI):
-    """FastAPI lifespan context manager for startup/shutdown events."""
-    create_db_and_tables() # Jalankan saat startup
+     """FastAPI lifespan context manager for startup/shutdown events."""
+    print("Application startup...")
+    create_db_and_tables() # Panggil function ini saat startup
     yield # Aplikasi berjalan di sini
-    # Clean up can be done here if needed (e.g., close DB connections)
+    print("Application shutdown.")
+    # Clean up can be done here if needed
 
 app = FastAPI(
     title=settings.PROJECT_NAME,

@@ -4,6 +4,8 @@ from app.core.config import settings
 # Engine dibuat di sini, tapi tabel dibuat di Task 5 (startup event)
 engine = create_engine(settings.SQLALCHEMY_DATABASE_URI, echo=False)
 
+print(f"DEBUG: SQLALCHEMY_DATABASE_URI: {settings.SQLALCHEMY_DATABASE_URI}")
+print(f"DEBUG: Connecting with user={settings.POSTGRES_USER}, password={settings.POSTGRES_PASSWORD}")
 
 def create_db_and_tables():
     """Create all tables. Called on startup (Task 5)."""

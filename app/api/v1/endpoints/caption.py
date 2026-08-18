@@ -6,6 +6,7 @@ from app.db.session import get_session
 from app.models.image_caption import ImageCaption
 from app.services.vision_service import get_image_caption
 from app.exceptions import VisionServiceError
+from app.schemas import CaptionResponse
 
 router = APIRouter(
     prefix="/caption",
@@ -22,6 +23,7 @@ MAX_UPLOAD_SIZE = 5 * 1024 * 1024  # 5 MB
     description="Upload an image (PNG, JPEG, WebP) and receive a descriptive caption. Uses a vision LLM via 9router.",
     response_description="Caption metadata including ID, filename, caption text, model used, and creation timestamp.",
     status_code=status.HTTP_200_OK,
+    response_model=CaptionResponse
 )
 async def create_caption(
     file: UploadFile = File(...),

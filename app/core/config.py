@@ -14,7 +14,7 @@ class Settings(BaseSettings):
 
     
     # Database (Postgres)
-    POSTGRES_SERVER: str = "localhost"
+    POSTGRES_SERVER: str = "db"
     POSTGRES_USER: str = "postgres"
     POSTGRES_PASSWORD: str = "postgres"
     POSTGRES_DB: str = "caption_db"

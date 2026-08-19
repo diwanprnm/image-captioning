@@ -32,8 +32,9 @@ async def get_image_caption(image_bytes: bytes, mime_type: str) -> str:
     payload = {
         "model": settings.NINE_ROUTER_VISION_MODEL,
         "messages": messages,
-        "max_tokens": 200,
-        "temperature": 0.2
+        "max_tokens": 500,
+        "temperature": 0.2,
+        "stream": False,
     }
 
     headers = {
@@ -48,6 +49,8 @@ async def get_image_caption(image_bytes: bytes, mime_type: str) -> str:
             headers=headers,
             timeout=30.0,
         )
+        print(f"DEBUG: Status={response.status_code}")
+        print(f"DEBUG: Response text={response.text[:500]}")  # Print first 500 chars
         response.raise_for_status()
         data = response.json()
 

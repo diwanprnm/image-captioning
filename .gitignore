@@ -5,3 +5,7 @@ __pycache__/
 .env
 venv/
 *.egg-info/
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+graft/
+.claude
